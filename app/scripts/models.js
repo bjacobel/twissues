@@ -1,28 +1,23 @@
+/**
+ * Application: twissues
+ * Author: Brian Jacobel
+ * Email: brian@bjacobel.com
+ * Date: 5/9/2104
+ * File: models.js
+ * Description: Backbone models & collections to fetch data from the GitHub API.
+ */
+
 window.GitHub = {};
 
-GitHub.token = null;
+/** Hardcoding my Github OAuth token here, which isn't ideal;
+ * I gave implementing full OAuth a shot but found it wasn't possible without
+ * a) having some server-side component of this application, or
+ * b) writing my client ID and secret into this file in cleartext, which is
+ *    significantly *less* secure than this is
+ */
+GitHub.token = "a43361eb824dd5a6bc9a1442d0cc84208458297c";
 
 var baseURL = "https://api.github.com/repos/";
-
-GitHub.authenticate = function(username, password, options) {
-    var postData = {};
-    if (options.scope != null) postData.scope = options.scope;
-    return $.ajax({
-        url: "https://api.github.com/authorizations",
-        contentType: 'application/json',
-        dataType: 'json',
-        type: 'POST',
-        data: JSON.stringify(postData),
-        headers: {
-            'Authorization': "Basic " + (btoa("" + username + ":" + password))
-        },
-        success: function(d, s, x) {
-            GitHub.token = d.token;
-            if (options.success != null) return options.success(d, s, x);
-        },
-        error: options.error
-    });
-};
 
 // Override Backbone's default .sync with Github's custom accept mimetype
 // also set an authorization token, if we've obtained it already
@@ -30,17 +25,15 @@ GitHub.authenticate = function(username, password, options) {
 GitHub.sync = function(method, model, options) {
     var extendedOptions = _.extend({
         beforeSend: function(xhr) {
-            // Custom mimetype
-            xhr.setRequestHeader('Accept', 'application/vnd.github.v3+json');
-
-            // Authorize using OAuth2 in header
+            xhr.setRequestHeader('Accept', 'application/vnd.github+json');
             if (GitHub.token) {
-                return xhr.setRequestHeader('Authorization', "token " + GitHub.token);
+                return xhr.setRequestHeader('Authorization', "bearer " + GitHub.token);
             }
         }
     }, options);
     return Backbone.sync(method, model, extendedOptions);
 };
+
 
 // Set up custom Models and Collections that use our custom .sync method
 GitHub.Model = Backbone.Model.extend({
