@@ -1,0 +1,8 @@
+{
+  "name": "twissues",
+  "private": true,
+  "dependencies": {
+    "zepto": "~1.1.6",
+    "backbone": "~1.1.2"
+  }
+}
