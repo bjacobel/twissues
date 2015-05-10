@@ -25,7 +25,7 @@ var baseURL = "https://api.github.com/repos/";
 GitHub.sync = function(method, model, options) {
     var extendedOptions = _.extend({
         beforeSend: function(xhr) {
-            xhr.setRequestHeader('Accept', 'application/vnd.github+json');
+            xhr.setRequestHeader('Accept', 'application/vnd.github.v3+json');
             if (GitHub.token) {
                 return xhr.setRequestHeader('Authorization', "bearer " + GitHub.token);
             }
@@ -46,12 +46,12 @@ GitHub.Collection = Backbone.Collection.extend({
 
 GitHub.Issue = GitHub.Model.extend({
     url: function() {
-        return baseURL + this.get('repo') + "/issues/" + this.get('issueId');
+        return baseURL + this.get('path') + "/issues/" + this.get('issueId');
     }
 }, {
-    fetch: function(repo, issueId, options) {
+    fetch: function(owner, repo, issueId, options) {
         var issue = new GitHub.Issue({
-            repo: repo,
+            path: owner + "/" + repo,
             issueId: issueId
         });
         issue.fetch(options);
@@ -61,13 +61,13 @@ GitHub.Issue = GitHub.Model.extend({
 
 GitHub.Issues = GitHub.Collection.extend({
     url: function() {
-        return baseURL + this.toJSON()[0].repo + "/issues";
+        return baseURL + this.toJSON()[0].path + "/issues";
     },
     model: GitHub.Issue
 }, {
-    fetch: function(repo, options) {
+    fetch: function(owner, repo, options) {
         var issues = new GitHub.Issues({
-            repo: repo
+            path: owner + "/" + repo
         });
         issues.fetch(options);
         return issues;
@@ -76,12 +76,12 @@ GitHub.Issues = GitHub.Collection.extend({
 
 GitHub.Comment = GitHub.Model.extend({
     url: function() {
-        return baseURL + this.get('repo') + "/issues/" + this.get('issueId') + "/comments/" + this.get('commentId');
+        return baseURL + this.get('path') + "/issues/" + this.get('issueId') + "/comments/" + this.get('commentId');
     }
 }, {
-    fetch: function(repo, issueId, commentId, options) {
+    fetch: function(owner, repo, issueId, commentId, options) {
         var issue = new GitHub.Issue({
-            repo: repo,
+            path: owner + "/" + repo,
             issueId: issueId,
             commentId: commentId
         });
@@ -92,20 +92,16 @@ GitHub.Comment = GitHub.Model.extend({
 
 GitHub.Comments = GitHub.Collection.extend({
     url: function() {
-        return baseURL + this.toJSON()[0].repo + "/issues/" + this.toJSON()[0].issueId + "/comments";
+        return baseURL + this.toJSON()[0].path + "/issues/" + this.toJSON()[0].issueId + "/comments";
     },
     model: GitHub.Issue
 }, {
-    fetch: function(repo, issueId, options) {
+    fetch: function(owner, repo, issueId, options) {
         var issues = new GitHub.Issues({
-            repo: repo,
+            path: owner + "/" + repo,
             issueId: issueId
         });
         issues.fetch(options);
         return issues;
     }
 });
-
-// GitHub.Comment.fetch("rails/rails", 2000, 74706317, {success: function(repo) {
-//   console.log(repo.toJSON());
-// }});
