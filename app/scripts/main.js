@@ -18,8 +18,8 @@ require.config({
 require(['scripts/views/issueView', 'scripts/views/issuesView'], function(issueView, issuesView){
     var AppRouter = Backbone.Router.extend({
         routes: {
-            "repo/*owner/*repo/issues/*issueId": "issueController",
-            "repo/*owner/*repo/issues": "issuesController",
+            "*owner/*repo/*issueId": "issueController",
+            "*owner/*repo": "issuesController",
             "*actions": "reposController"
         }
     });

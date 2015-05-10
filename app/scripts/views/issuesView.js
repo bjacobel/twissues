@@ -7,7 +7,6 @@
  * Description: Backbone Views & rendering logic
  */
 
-
 define(['scripts/models', 'text!templates/issues.html'], function(models, issuesTemplate){
     var issuesView = Backbone.View.extend({
         template: _.template(issuesTemplate),
@@ -30,7 +29,7 @@ define(['scripts/models', 'text!templates/issues.html'], function(models, issues
                 }
             });
 
-            this.$el.html(this.template(data));
+            this.$el.html("loading...");
             return this;
         }
     });

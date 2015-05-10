@@ -29,7 +29,7 @@ define(['scripts/models', 'text!templates/issue.html'], function(models, issueTe
                 }
             });
 
-            this.$el.html(this.template(data));
+            this.$el.html("loading...");
             return this;
         }
     });
