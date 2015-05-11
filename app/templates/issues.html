@@ -4,12 +4,20 @@
 <ul class="issue-list">
     <% _.each( issues, function( issue ){ %>
         <li class="issue-mini">
-            <span class="issue-title"><%= issue.attributes.title %></span>
-            <p class="issue-description">
-                <% marked(issue.attributes.body) %>
-            </p>
+            <span class="issue-title">
+                <a href="/#/<%=owner%>/<%=repo%>/<%=issue.attributes.number%>">
+                    <%= gfm(issue.attributes.title) %>
+                </a>
+            </span>
+            <div class="issue-description">
+                <%= gfm(issue.attributes.body.trunc(140)) %>
+            </div>
             <div class="issue-meta">
-                <span class="issue-number">#<%= issue.attributes.number %></span>
+                <span class="issue-number">
+                    <a href="/#/<%=owner%>/<%=repo%>/<%=issue.attributes.number%>">
+                        #<%= issue.attributes.number %>
+                    </a>
+                </span>
                 <div class="issue-reporter">
                     <span class="reported-by">, reported by</span>
                     <a class="issue-reporter-meta" href="https://github.com/<%= issue.attributes.user.login %>">

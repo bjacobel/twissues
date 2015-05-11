@@ -21,10 +21,12 @@ define(['scripts/models', 'text!templates/issues.html'], function(models, issues
 
             var self = this;
             var data = {
-                issues: []
+                issues: [],
+                owner: this.options.owner,
+                repo: this.options.repo
             };
 
-            this.collection.fetch(this.options.owner, this.options.repo, {
+            this.collection.fetch(data.owner, data.repo, this.options.page, {
                 success: function(resp){
                     data.issues = resp.models;
                     console.log(data.issues);

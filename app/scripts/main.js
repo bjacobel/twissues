@@ -15,7 +15,7 @@ require.config({
     }
 });
 
-require(['scripts/views/issueView', 'scripts/views/issuesView'], function(issueView, issuesView){
+require(['scripts/views/viewUtils', 'scripts/views/issueView', 'scripts/views/issuesView'], function(viewUtils, issueView, issuesView){
     var AppRouter = Backbone.Router.extend({
         routes: {
             "*owner/*repo/*issueId": "issueController",
@@ -27,6 +27,7 @@ require(['scripts/views/issueView', 'scripts/views/issuesView'], function(issueV
     var app_router = new AppRouter;
 
     // Thin controllers - AFAICT Backbone is more of an MTV than a MVC
+
     app_router.on("route:issueController", function(owner, repo, issueId){
         if (issueId === null){
             // triggered if the user adds a trailing slash (they should not)
@@ -42,15 +43,22 @@ require(['scripts/views/issueView', 'scripts/views/issuesView'], function(issueV
 
     });
 
-    app_router.on("route:issuesController", function(owner, repo){
-        $("#content").html(new issuesView({
+    app_router.on("route:issuesController", function(owner, repo, args){
+        var data = {
             collection: GitHub.Issues,
             owner: owner,
-            repo: repo
-        }).render().el);
+            repo: repo,
+        };
+
+        // Parse the querystring to obtain pagination
+        if (args && args.match("page=(.)")){
+            data.page = args.match("page=(.)")[1];
+        }
+
+        $("#content").html(new issuesView(data).render().el);
     });
 
-    // PushState is difficult when you're not running a real server (plan is to
+    // pushState is difficult when you're not running a real server (plan is to
     // host this on S3) so we'll just use /#/ urls
     Backbone.history.start();
 });

@@ -63,13 +63,18 @@ GitHub.Issue = GitHub.Model.extend({
 
 GitHub.Issues = GitHub.Collection.extend({
     url: function() {
-        return baseURL + this.toJSON()[0].path + "/issues";
+        var url = baseURL + this.toJSON()[0].path + "/issues";
+        if (this.toJSON()[0].page){
+            url += "?page=" + this.toJSON()[0].page
+        }
+        return url;
     },
     model: GitHub.Issue
 }, {
-    fetch: function(owner, repo, options) {
+    fetch: function(owner, repo, page, options) {
         var issues = new GitHub.Issues({
-            path: owner + "/" + repo
+            path: owner + "/" + repo,
+            page: page ? page : 1
         });
         issues.fetch(options);
         return issues;
@@ -82,7 +87,7 @@ GitHub.Comment = GitHub.Model.extend({
     }
 }, {
     fetch: function(owner, repo, issueId, commentId, options) {
-        var issue = new GitHub.Issue({
+        var issue = new GitHub.Comment({
             path: owner + "/" + repo,
             issueId: issueId,
             commentId: commentId
@@ -99,7 +104,7 @@ GitHub.Comments = GitHub.Collection.extend({
     model: GitHub.Issue
 }, {
     fetch: function(owner, repo, issueId, options) {
-        var issues = new GitHub.Issues({
+        var issues = new GitHub.Comments({
             path: owner + "/" + repo,
             issueId: issueId
         });
