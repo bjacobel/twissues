@@ -17,6 +17,8 @@ define(['scripts/models', 'text!templates/issue.html'], function(models, issueTe
         },
 
         render: function() {
+            this.$el.html("loading...");
+
             var self = this;
             var data = {
                 issue: {}
@@ -29,7 +31,6 @@ define(['scripts/models', 'text!templates/issue.html'], function(models, issueTe
                 }
             });
 
-            this.$el.html("loading...");
             return this;
         }
     });

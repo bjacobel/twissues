@@ -28,12 +28,18 @@ require(['scripts/views/issueView', 'scripts/views/issuesView'], function(issueV
 
     // Thin controllers - AFAICT Backbone is more of an MTV than a MVC
     app_router.on("route:issueController", function(owner, repo, issueId){
-        $("#content").html(new issueView({
-            model: GitHub.Issue,
-            owner: owner,
-            repo: repo,
-            issueId: issueId
-        }).render().el);
+        if (issueId === null){
+            // triggered if the user adds a trailing slash (they should not)
+            app_router.navigate("#/"+owner+"/"+repo, true);
+        } else {
+            $("#content").html(new issueView({
+                model: GitHub.Issue,
+                owner: owner,
+                repo: repo,
+                issueId: issueId
+            }).render().el);
+        }
+
     });
 
     app_router.on("route:issuesController", function(owner, repo){

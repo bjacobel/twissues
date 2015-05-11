@@ -17,6 +17,8 @@ define(['scripts/models', 'text!templates/issues.html'], function(models, issues
         },
 
         render: function() {
+            this.$el.html("loading...");
+
             var self = this;
             var data = {
                 issues: []
@@ -25,11 +27,11 @@ define(['scripts/models', 'text!templates/issues.html'], function(models, issues
             this.collection.fetch(this.options.owner, this.options.repo, {
                 success: function(resp){
                     data.issues = resp.models;
+                    console.log(data.issues);
                     self.$el.html(self.template(data));
                 }
             });
 
-            this.$el.html("loading...");
             return this;
         }
     });

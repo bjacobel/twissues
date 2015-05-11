@@ -1,0 +1,70 @@
+.repo-meta {
+    min-height: 120px;
+    width: 100%;
+    display: block;
+}
+
+.issue-list {
+    .issue-mini {
+        width: 100%;
+        overflow: hidden;
+        border-width: 2px 2px 0 2px;
+        border-style: solid;
+        border-color: $medgray;
+        padding: 17px;
+
+        &:first-child {
+            border-radius: 5px;
+            margin-bottom: -2px;
+        }
+
+        &:last-child {
+            margin-top: -2px;
+            border-radius: 5px;
+            border-width: 2px;
+        }
+
+        .issue-title {
+            width: 100%;
+            display: block;
+        }
+
+        .issue-meta {
+            height: 20px;
+            font-size: .8em;
+            display: inline-block;
+
+            * {
+                line-height:20px;
+                height: 20px;
+                float: left;
+                color: $darkgray;
+            }
+
+            .issue-number {
+            }
+
+            .issue-reporter {
+                .reported-by {
+                    &:after {
+                        content: '\00A0';
+                        right: 0;
+                        display: inline-block;
+                    }
+                }
+
+                .avatar {
+                    margin-left: 6px;
+                    width: 20px;
+                    border-radius: 50px;
+                }
+
+                .issue-reporter-meta:hover {
+                    .username{
+                        color: $blue;
+                    }
+                }
+            }
+        }
+    }
+}

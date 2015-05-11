@@ -39,11 +39,11 @@ GitHub.sync = function(method, model, options) {
 // Wrap these sync methods in cachingSync (https://github.com/ggozad/Backbone.cachingSync)
 // because this Amtrak's wifi is very bad
 GitHub.Model = Backbone.Model.extend({
-    sync: Backbone.cachingSync(GitHub.sync)
+    sync: GitHub.sync
 });
 
 GitHub.Collection = Backbone.Collection.extend({
-    sync: Backbone.cachingSync(GitHub.sync)
+    sync: GitHub.sync
 });
 
 GitHub.Issue = GitHub.Model.extend({
