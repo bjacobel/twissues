@@ -1,28 +1,47 @@
 <div class="repo-meta">
+    <h2 class="repo-name">
+        <a href="http://github.com/<%=owner%>"><%=owner%></a>
+        /
+        <a href<a href="http://github.com/<%=owner%>/<%=repo%>"><%=repo%></a>
+    </h2>
+    <div class="pagination-controls">
+        <!-- this onclick is kind of gross... @todo -->
+        <button class="prev" onclick="pagePrev()"
+            <% if (page <= 1) { %> disabled <% } %>
+        >prev</button>
+        <button class="next" onclick="pageNext()"
+            <% if (page >= maxPage) { %> disabled <% } %>
+        >next</button>
+    </div>
 </div>
 
 <ul class="issue-list">
     <% _.each( issues, function( issue ){ %>
         <li class="issue-mini">
+            <div class="labels">
+                <% _.each( issue.labels, function( label ){ %>
+                    <div class="label" style="background-color: #<%=label.color%>;"><%= label.name %></div>
+                <% }) %>
+            </div>
             <span class="issue-title">
-                <a href="/#/<%=owner%>/<%=repo%>/<%=issue.attributes.number%>">
-                    <%= gfm(issue.attributes.title) %>
+                <a href="/#/<%=owner%>/<%=repo%>/<%=issue.number%>">
+                    <%= gfm(issue.title) %>
                 </a>
             </span>
             <div class="issue-description">
-                <%= gfm(issue.attributes.body.trunc(140)) %>
+                <%= gfm(issue.body.trunc(140)) %>
             </div>
             <div class="issue-meta">
                 <span class="issue-number">
-                    <a href="/#/<%=owner%>/<%=repo%>/<%=issue.attributes.number%>">
-                        #<%= issue.attributes.number %>
+                    <a href="/#/<%=owner%>/<%=repo%>/<%=issue.number%>">
+                        #<%= issue.number %>
                     </a>
                 </span>
                 <div class="issue-reporter">
                     <span class="reported-by">, reported by</span>
-                    <a class="issue-reporter-meta" href="https://github.com/<%= issue.attributes.user.login %>">
-                        <span class="username">@<%= issue.attributes.user.login %></span>
-                        <img class="avatar" src="<%= issue.attributes.user.avatar_url %>">
+                    <a class="issue-reporter-meta" href="https://github.com/<%= issue.user.login %>">
+                        <span class="username">@<%= issue.user.login %></span>
+                        <img class="avatar" src="<%= issue.user.avatar_url %>">
                     </a>
                 </div>
             </div>

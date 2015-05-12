@@ -21,12 +21,23 @@ define(['scripts/models', 'text!templates/issue.html'], function(models, issueTe
 
             var self = this;
             var data = {
-                issue: {}
+                issue: {},
+                comments: [],
+                owner: this.options.owner,
+                repo: this.options.repo
             };
 
-            this.model.fetch(this.options.owner, this.options.repo, this.options.issueId, {
+            this.model.fetch(data.owner, data.repo, this.options.issueId, {
                 success: function(resp){
                     data.issue = resp.attributes;
+                    self.$el.html(self.template(data));
+                }
+            });
+
+            this.options.comments.fetch(data.owner, data.repo, this.options.issueId, {
+                success: function(resp){
+                    data.comments = resp.models.map(function(obj){return obj.attributes;});
+                    console.table(data.comments);
                     self.$el.html(self.template(data));
                 }
             });

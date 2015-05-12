@@ -35,6 +35,7 @@ require(['scripts/views/viewUtils', 'scripts/views/issueView', 'scripts/views/is
         } else {
             $("#content").html(new issueView({
                 model: GitHub.Issue,
+                comments: GitHub.Comments,
                 owner: owner,
                 repo: repo,
                 issueId: issueId
@@ -62,4 +63,3 @@ require(['scripts/views/viewUtils', 'scripts/views/issueView', 'scripts/views/is
     // host this on S3) so we'll just use /#/ urls
     Backbone.history.start();
 });
-

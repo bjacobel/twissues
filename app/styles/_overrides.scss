@@ -54,4 +54,17 @@ body {
     @include vendor-prefix("hyphens", "auto");
 }
 
+button {
+    background: none;
+    border: none;
+    -webkit-appearance: none;
+}
+
 $maxz: 2147483647;
+
+pre {
+    background-color: $lightgray;
+    padding: 10px;
+    border-radius: 3px;
+    overflow-y: scroll;
+}

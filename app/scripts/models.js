@@ -67,6 +67,7 @@ GitHub.Issues = GitHub.Collection.extend({
         if (this.toJSON()[0].page){
             url += "?page=" + this.toJSON()[0].page
         }
+        url += "?per_page=25";
         return url;
     },
     model: GitHub.Issue

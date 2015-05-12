@@ -23,13 +23,14 @@ define(['scripts/models', 'text!templates/issues.html'], function(models, issues
             var data = {
                 issues: [],
                 owner: this.options.owner,
-                repo: this.options.repo
+                repo: this.options.repo,
+                page: this.options.page
             };
 
             this.collection.fetch(data.owner, data.repo, this.options.page, {
                 success: function(resp){
-                    data.issues = resp.models;
-                    console.log(data.issues);
+                    data.issues = resp.models.map(function(obj){return obj.attributes;});
+                    data.maxPage = 30; // @TODO: Figure out how to set this dynamically
                     self.$el.html(self.template(data));
                 }
             });
@@ -40,3 +41,18 @@ define(['scripts/models', 'text!templates/issues.html'], function(models, issues
 
     return issuesView;
 });
+
+var paginate = function(increment){
+    if (window.location.hash.match(/\?page=(\d)/)){
+        var currentPage = parseInt(window.location.hash.match(/\?page=(\d)/)[1], 10);
+        window.location = window.location.origin + window.location.hash.replace(
+            currentPage, currentPage + increment
+        )
+    } else {
+        window.location = window.location + "?page=" + increment
+    }
+}
+
+var pageNext = function(){paginate(1);}
+
+var pagePrev = function(){paginate(-1);};

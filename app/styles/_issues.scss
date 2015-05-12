@@ -1,7 +1,40 @@
 .repo-meta {
-    min-height: 120px;
     width: 100%;
     display: block;
+    height: 85px;
+
+    .repo-name {
+        color: $twitter;
+        float: left;
+        display: inline-block;
+    }
+
+    .pagination-controls {
+        float: right;
+        display: inline-block;
+        height: 100%;
+
+        button {
+            width: 60px;
+            height: 35px;
+            margin: 25px 0;
+            border-radius: 5px;
+            border: none;
+
+            background-color: $twitter;
+
+            color: white;
+            font-weight: 700;
+            font-size: .7em;
+
+            @extend %noselect;
+            @extend %hand;
+
+            &:hover {
+                background-color: $nightTwitter;
+            }
+        }
+    }
 }
 
 .issue-list {
@@ -36,42 +69,125 @@
         .issue-description {
             font-size: .8em;
         }
+    }
+}
 
-        .issue-meta {
-            height: 20px;
-            font-size: .7em;
+.issue-detail {
+    margin-top: 30px;
+
+    .issue-top {
+        width: 100%;
+        display: block;
+
+        .labels {
+            right: 0;
+            float: right;
             display: inline-block;
+            width: auto;
+        }
+    }
 
-            * {
-                line-height:20px;
-                height: 20px;
-                float: left;
-                color: $darkgray;
+    .issue-body pre {
+        background-color: $lightgray;
+    }
+
+    .issue-body * {
+        overflow-y:scroll;
+        font-size: .9em;
+    }
+
+    .issue-more-meta {
+        font-size: .75em;
+        font-style: italic;
+    }
+
+    .comments {
+        .comment {
+            border: 2px solid $medgray;
+            border-radius: 3px;
+            margin-bottom: 20px;
+
+            .comment-meta {
+                width: 100%;
+                background-color: $medgray;
+                height: 40px;
+                font-size: .7em;
+                font-style: italic;
+                padding: 3px 10px 0 10px;
+
+                img {
+                    height: 20px;
+                    border-radius:50px;
+                    top: 5px;
+                    position: relative;
+                }
+
+                p {
+                    margin: 0;
+                }
             }
 
-            .issue-number {
+            .comment-body {
+                font-size: .7em;
+                padding: 15px;
+
+                a {
+                    color:$blue;
+                }
             }
+        }
+    }
+}
 
-            .issue-reporter {
-                .reported-by {
-                    &:after {
-                        content: '\00A0';
-                        right: 0;
-                        display: inline-block;
-                    }
-                }
 
-                .avatar {
-                    margin-left: 6px;
-                    width: 20px;
-                    border-radius: 50px;
-                }
+.labels {
+    width: 100%;
 
-                .issue-reporter-meta:hover {
-                    .username{
-                        color: $blue;
-                    }
-                }
+    .label {
+        display: inline-block;
+        height: 25px;
+        color: white;
+        font-size:.6em;
+        line-height:1.2em;
+        vertical-align: middle;
+        border-radius:3px;
+        padding: 5px;
+    }
+}
+
+.issue-meta {
+    height: 20px;
+    font-size: .7em;
+    display: inline-block;
+
+    * {
+        line-height:20px;
+        height: 20px;
+        float: left;
+        color: $darkgray;
+    }
+
+    .issue-number {
+    }
+
+    .issue-reporter {
+        .reported-by {
+            &:after {
+                content: '\00A0';
+                right: 0;
+                display: inline-block;
+            }
+        }
+
+        .avatar {
+            margin-left: 6px;
+            width: 20px;
+            border-radius: 50px;
+        }
+
+        .issue-reporter-meta:hover {
+            .username{
+                color: $blue;
             }
         }
     }
