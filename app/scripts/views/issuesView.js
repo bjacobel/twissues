@@ -41,7 +41,7 @@ define([
                 issues: [],
                 owner: this.options.owner,
                 repo: this.options.repo,
-                page: this.options.page
+                page: this.options.page,
             };
 
             // Fetch the issue collection

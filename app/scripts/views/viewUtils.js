@@ -39,8 +39,8 @@ var linkify_users = function(text){
  * Includes emoji support, because what is GitHub without the :shipit: squirrel?
  * @params {string} text The text to be transformed
  */
-var gfm = function(text){
-    define(["emoji", "marked"], function(emoji, marked){
+define(["emoji", "marked"], function(emoji, marked){
+    return gfm = function(text){
         emoji.img_path = "https://raw.githubusercontent.com/github/gemoji/master/images/emoji/unicode/";
 
         var gfmified = marked(      // Convert to markdown
@@ -52,5 +52,5 @@ var gfm = function(text){
         );
 
         return gfmified;
-    });
-};
+    };
+});
