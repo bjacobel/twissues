@@ -1,6 +1,3 @@
-var chai = require('chai'),
-assert = chai.assert;
-
 (function () {
     'use strict';
 

@@ -5,7 +5,6 @@
   },
   "devDependencies": {
     "apache-server-configs": "^2.7.1",
-    "chai": "^2.3.0",
     "connect": "^3.0.1",
     "connect-livereload": "^0.5.0",
     "del": "^0.1.0",
@@ -21,6 +20,7 @@
     "gulp-livereload": "^2.0.0",
     "gulp-load-plugins": "^0.7.1",
     "gulp-minify-html": "^0.1.6",
+    "gulp-mocha-phantomjs": "^0.6.1",
     "gulp-plumber": "^0.6.3",
     "gulp-replace": "^0.4.0",
     "gulp-ruby-sass": "^0.7.1",
@@ -37,6 +37,6 @@
     "wiredep": "^2.0.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "node_modules/mocha/bin/mocha"
   }
 }

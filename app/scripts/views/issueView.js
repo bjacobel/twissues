@@ -34,6 +34,10 @@ define(["scripts/models", "text!templates/issue.html"], function(models, issueTe
 
                     // Re-render the page when we have new data to pass in
                     self.$el.html(self.template(data));
+                },
+                error: function(){
+                    // @TODO: Better error messaging
+                    window.location = "/#/error";
                 }
             });
 
@@ -45,6 +49,10 @@ define(["scripts/models", "text!templates/issue.html"], function(models, issueTe
 
                     // Re-render the page when we have new data to pass in
                     self.$el.html(self.template(data));
+                },
+                error: function(){
+                    // @TODO: Better error messaging
+                    window.location = "/#/error";
                 }
             });
 

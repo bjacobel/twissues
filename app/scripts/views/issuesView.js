@@ -34,6 +34,10 @@ define(["scripts/models", "text!templates/issues.html"], function(models, issues
                     data.issues = resp.models.map(function(obj){return obj.attributes;});
                     data.maxPage = 30; // @TODO: Figure out how to set this dynamically
                     self.$el.html(self.template(data));
+                },
+                error: function(){
+                    // @TODO: Better error messaging
+                    window.location = "/#/error";
                 }
             });
 
