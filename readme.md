@@ -5,7 +5,11 @@
 ####Dependencies
 - node (`brew install node`)
 - gulp (`npm install -g gulp`)
+- bower (`npm install -g bower`)
 - contents of `package.json` (`npm install`)
+- contents of `bower.json` (`bower install`)
+
+(In the distributable zipfile of this repository, I have removed `node_modules` but preserved `bower_components` due to considerations of archive size. You will need to run `npm install` but not `bower install`.)
 
 To run the application, first make sure you have Node and gulp installed. Then,
 
