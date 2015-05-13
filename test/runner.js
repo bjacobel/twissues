@@ -28,6 +28,10 @@ define(function(require) {
 
   require([
     'specs/viewUtilsTests.js',
+    'specs/issuesCollectionTests.js',
+    'specs/commentsCollectionTests.js',
+    'specs/issueModelTests.js',
+    'specs/commentModelTests.js'
   ], function(require) {
     if (window.mochaPhantomJS) {
       mochaPhantomJS.run();

@@ -20,21 +20,21 @@ define(function(require) {
         });
     });
 
-    describe('The GitHub formatted markdown parser', function (){
-        it('should parse Markdown into HTML', function(){
-            chai.assert.equal(gfm("#hi"), '<h1 id="hi">hi</h1>');
-        });
+    // describe('The GitHub formatted markdown parser', function (){
+    //     it('should parse Markdown into HTML', function(){
+    //         chai.assert.equal(gfm("#hi"), '<h1 id="hi">hi</h1>');
+    //     });
 
-        it('should parse both Markdown and user names', function(){
-            chai.assert.equal(
-                gfm("##Reasons @bjacobel would be a great @twitter employee:"),
-                '<h2 id="reasons-a-href-https-github-com-bjacobel-bjacobel-a-would-be-a-great-a-href-https-github-com-twitter-twitter-a-employee-">Reasons <a href=\'https://github.com/bjacobel\'>@bjacobel</a> would be a great <a href=\'https://github.com/twitter\'>@twitter</a> employee:</h2>'
-            );
-        });
-        it('should parse emoji', function(){
-            chai.assert.equal("", gfm(":shipit:"));
-        });
-    });
+    //     it('should parse both Markdown and user names', function(){
+    //         chai.assert.equal(
+    //             gfm("##Reasons @bjacobel would be a great @twitter employee:"),
+    //             '<h2 id="reasons-a-href-https-github-com-bjacobel-bjacobel-a-would-be-a-great-a-href-https-github-com-twitter-twitter-a-employee-">Reasons <a href=\'https://github.com/bjacobel\'>@bjacobel</a> would be a great <a href=\'https://github.com/twitter\'>@twitter</a> employee:</h2>'
+    //         );
+    //     });
+    //     it('should parse emoji', function(){
+    //         chai.assert.equal("", gfm(":shipit:"));
+    //     });
+    // });
 
     describe('The string truncation method', function(){
         it('should end a long string at n chars with an ellipsis and a clean word break', function(){
@@ -47,5 +47,5 @@ define(function(require) {
         it("shouldn't do anthing to a <nchar string", function(){
             chai.assert.equal("this string is just fine", "this string is just fine".trunc(100))
         })
-    })
+    });
 });

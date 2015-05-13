@@ -1,0 +1,8 @@
+.spinner {
+    width: 100%;
+    height: calc(100vh - 60px * 2 - 30px);
+    background-image:url('../images/spiffygif_50x50.gif');
+    background-size: 40px 40px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}

@@ -21,8 +21,9 @@ define([
         "underscore",
         "backbone",
         "models",
-        "text!../../templates/issues.html"
-    ], function($, _, Backbone, models, issuesTemplate){
+        "text!../../templates/issues.html",
+        "text!../../templates/loading.html"
+    ], function($, _, Backbone, models, issuesTemplate, loadingSpinner){
 
     var issuesView = Backbone.View.extend({
         template: _.template(issuesTemplate),
@@ -34,7 +35,7 @@ define([
 
         render: function() {
             // @TODO: Add a real loading page
-            this.$el.html("loading...");
+            this.$el.html(loadingSpinner);
 
             var self = this;
             var data = {

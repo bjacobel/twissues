@@ -21,8 +21,9 @@ define([
         "underscore",
         "backbone",
         "models",
-        "text!../../templates/issue.html"
-    ], function($, _, Backbone, models, issueTemplate){
+        "text!../../templates/issue.html",
+        "text!../../templates/loading.html"
+    ], function($, _, Backbone, models, issueTemplate, loadingSpinner){
 
     var issueView = Backbone.View.extend({
         template: _.template(issueTemplate),
@@ -33,7 +34,7 @@ define([
         },
 
         render: function() {
-            this.$el.html("loading...");
+            this.$el.html(loadingSpinner);
 
             var self = this;
             var data = {

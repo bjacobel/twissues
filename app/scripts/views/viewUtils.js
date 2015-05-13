@@ -46,15 +46,13 @@ define(["emoji", "marked"], function(emoji, marked){
     return gfm = function(text){
         emoji.img_path = "https://raw.githubusercontent.com/github/gemoji/master/images/emoji/unicode/";
 
-        var gfmified = marked(      // Convert to markdown
+        return marked(      // Convert to markdown
             emoji.replace_colons(   // Display emoji
                 linkify_users(
                     text
                 )
             )
         );
-
-        return gfmified;
     };
 });
 /* jshint ignore:end */
