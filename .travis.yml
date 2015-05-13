@@ -5,4 +5,4 @@ install:
   - npm install
   - npm install -g bower
 before_test:
-  - "cd test && bower install && cd ../""
+  - "cd test && bower install && cd ../"
