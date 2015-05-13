@@ -9,9 +9,7 @@
 - contents of `package.json` (`npm install`)
 - contents of `bower.json` (`bower install`)
 
-(In the distributable zipfile of this repository, I have removed `node_modules` but preserved `bower_components` due to considerations of archive size. You will need to run `npm install` but not `bower install`.)
-
-To run the application, first make sure you have Node and gulp installed. Then,
+To run the application, first make sure you have Node, gulp and bower installed. Then,
 
 ```
 npm install
