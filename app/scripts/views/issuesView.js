@@ -17,6 +17,7 @@ define(["scripts/models", "text!templates/issues.html"], function(models, issues
         },
 
         render: function() {
+            // @TODO: Add a real loading page
             this.$el.html("loading...");
 
             var self = this;
@@ -27,6 +28,7 @@ define(["scripts/models", "text!templates/issues.html"], function(models, issues
                 page: this.options.page
             };
 
+            // Fetch the issue collection
             this.collection.fetch(data.owner, data.repo, this.options.page, {
                 success: function(resp){
                     data.issues = resp.models.map(function(obj){return obj.attributes;});

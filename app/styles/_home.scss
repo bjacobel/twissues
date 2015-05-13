@@ -1,0 +1,50 @@
+.home {
+    padding-top: 30px;
+
+    h3 {
+        margin-top: 0;
+    }
+
+    .form-container {
+        width: 100%;
+        background-color: $lightgray;
+        padding: 30px 20px 20px 20px;
+        margin-bottom: 30px;
+
+        .repo-form {
+            max-width: 460px;
+            width: 100%;
+            margin: 0 auto;
+
+            .repo-form-input {
+                box-shadow: none;
+                outline: none;
+                border: 1px solid $medgray;
+                margin-bottom: 20px;
+                width: 100%;
+                border-radius: 5px;
+                height: 35px;
+                line-height: 35px;
+                font-size: 1.2em;
+                font-style: bold;
+                padding: 5px;
+
+                &:focus {
+                    border: 1px solid rgba($lightTwitter, 0.8);
+                    box-shadow: 0 0 8px $twitter;
+                }
+            }
+
+            button {
+                height: 35px;
+                width: 70px;
+                border-radius: 5px;
+                background-color: $twitter;
+                color: white;
+                font-size: 1.1em;
+                cursor: pointer;
+            }
+        }
+    }
+}
+

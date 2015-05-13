@@ -15,12 +15,19 @@ require.config({
     }
 });
 
-require(["scripts/views/viewUtils", "scripts/views/issueView", "scripts/views/issuesView"], function(viewUtils, issueView, issuesView){
+require([
+        "scripts/views/viewUtils",
+        "scripts/views/issueView",
+        "scripts/views/issuesView",
+        "scripts/views/homeView",
+        "scripts/views/errorView"
+    ], function(viewUtils, issueView, issuesView, homeView, errorView){
     var AppRouter = Backbone.Router.extend({
         routes: {
             "*owner/*repo/*issueId": "issueController",
             "*owner/*repo": "issuesController",
-            "*actions": "reposController"
+            "": "baseController",
+            "*actions": "errorController"
         }
     });
 
@@ -57,6 +64,14 @@ require(["scripts/views/viewUtils", "scripts/views/issueView", "scripts/views/is
         }
 
         $("#content").html(new issuesView(data).render().el);
+    });
+
+    appRouter.on("route:baseController", function(){
+        $("#content").html(new homeView().render().el);
+    });
+
+    appRouter.on("route:errorController", function(){
+        $("#content").html(new errorView().render().el);
     });
 
     // pushState is difficult when you're not running a real server (plan is to

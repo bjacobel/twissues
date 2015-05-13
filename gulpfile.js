@@ -3,6 +3,7 @@
 // generated on 2015-05-09 using generator-gulp-webapp 0.2.0
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
+var shell = require('gulp-shell');
 
 gulp.task('styles', function () {
   return gulp.src('app/styles/main.scss')
