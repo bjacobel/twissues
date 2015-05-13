@@ -4,7 +4,8 @@
  * Email: brian@bjacobel.com
  * Date: 5/9/2104
  * File: views/issueView.js
- * Description: Backbone Views & rendering logic
+ * Description: Backbone Views & rendering logic - get an individual issue and
+ *      template it along side its comments
  */
 
 require.config({
@@ -12,7 +13,7 @@ require.config({
         "text": "http://cdnjs.cloudflare.com/ajax/libs/require-text/2.0.12/text",
         "jquery": "http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min",
         "underscore": "http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min",
-        "backbone": "//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min"
+        "backbone": "http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min"
     }
 });
 
@@ -20,12 +21,12 @@ define([
         "jquery",
         "underscore",
         "backbone",
-        "models",
+        "../models",
         "text!../../templates/issue.html",
         "text!../../templates/loading.html"
     ], function($, _, Backbone, models, issueTemplate, loadingSpinner){
 
-    var issueView = Backbone.View.extend({
+    return issueView = Backbone.View.extend({
         template: _.template(issueTemplate),
 
         initialize: function(options) {
@@ -75,6 +76,4 @@ define([
             return this;
         }
     });
-
-    return issueView;
 });

@@ -31,7 +31,11 @@ define(function(require) {
     'specs/issuesCollectionTests.js',
     'specs/commentsCollectionTests.js',
     'specs/issueModelTests.js',
-    'specs/commentModelTests.js'
+    'specs/commentModelTests.js',
+    'specs/issueViewTests.js',
+    'specs/issuesViewTests.js',
+    'specs/homeViewTests.js',
+    'specs/errorViewTests.js'
   ], function(require) {
     if (window.mochaPhantomJS) {
       mochaPhantomJS.run();

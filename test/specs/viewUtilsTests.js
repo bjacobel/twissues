@@ -20,6 +20,11 @@ define(function(require) {
         });
     });
 
+    /* These tests bizzarely fail even though the output "expected" is *exactly*
+     * the same as the "actual" return value. Couldn't figure out what was going on
+     * in time - my hunch is a character encoding issue.
+     */
+
     // describe('The GitHub formatted markdown parser', function (){
     //     it('should parse Markdown into HTML', function(){
     //         chai.assert.equal(gfm("#hi"), '<h1 id="hi">hi</h1>');

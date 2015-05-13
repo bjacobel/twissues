@@ -4,7 +4,7 @@
  * Email: brian@bjacobel.com
  * Date: 5/9/2104
  * File: views/homeView.js
- * Description: Backbone Views & rendering logic
+ * Description: Backbone Views & rendering logic - home page - select a repo
  */
 
 require.config({
@@ -12,7 +12,7 @@ require.config({
         "text": "http://cdnjs.cloudflare.com/ajax/libs/require-text/2.0.12/text",
         "jquery": "http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min",
         "underscore": "http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min",
-        "backbone": "//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min"
+        "backbone": "http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min"
     }
 });
 
@@ -37,7 +37,7 @@ define([
         }
     });
 
-    // Route form input to the correct application pag
+    // Process form input and use it to take us to the issues list page the user wants
     var goToRepo = function(){
         window.location = "/#/" + $("#owner").val() + "/" + $("#repo").val();
     };
