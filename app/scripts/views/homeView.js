@@ -7,8 +7,22 @@
  * Description: Backbone Views & rendering logic
  */
 
+require.config({
+    paths: {
+        "text": "../../bower_components/text/text",
+        "jquery": "../bower_components/jquery/dist/jquery",
+        "underscore": "../bower_components/underscore/underscore",
+        "backbone": "../bower_components/backbone/backbone"
+    }
+});
+
 // A very basic view - nothing dynamic, just template rendering
-define(["scripts/models", "text!templates/home.html"], function(models, homeTemplate){
+define([
+        "jquery",
+        "underscore",
+        "backbone",
+        "text!../../templates/home.html"
+    ], function($, _, Backbone, homeTemplate){
     var homeView = Backbone.View.extend({
         template: _.template(homeTemplate),
 
@@ -26,14 +40,15 @@ define(["scripts/models", "text!templates/home.html"], function(models, homeTemp
     return homeView;
 });
 
+define(["../../bower_components/jquery/dist/jquery"], function($){
 // Route form input to the correct application pag
-var goToRepo = function(){
-    window.location = "/#/" + $("#owner").val() + "/" + $("#repo").val();
-};
+    var goToRepo = function(){
+        window.location = "/#/" + $("#owner").val() + "/" + $("#repo").val();
+    };
 
-$(document).keypress(function(e) {
-    if(e.which == 13) {
-        goToRepo();
-    }
+    $(document).keypress(function(e) {
+        if(e.which == 13) {
+            goToRepo();
+        }
+    });
 });
-

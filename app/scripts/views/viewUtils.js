@@ -7,7 +7,13 @@
  * Description: Helpers for Underscore templates
  */
 
-emoji.img_path = "https://raw.githubusercontent.com/github/gemoji/master/images/emoji/unicode/";
+require.config({
+    paths:{
+        "emoji": "../../bower_components/js-emoji/emoji",
+        "marked": "../../bower_components/marked/lib/marked"
+    }
+});
+
 
 // String truncation to a clean word boundary in approximately `n` chars
 // Borrowed in part from http://stackoverflow.com/a/1199420/2178152
@@ -34,13 +40,17 @@ var linkify_users = function(text){
  * @params {string} text The text to be transformed
  */
 var gfm = function(text){
-    var gfmified = marked(      // Convert to markdown
-        emoji.replace_colons(   // Display emoji
-            linkify_users(
-                text
-            )
-        )
-    );
+    define(["emoji", "marked"], function(emoji, marked){
+        emoji.img_path = "https://raw.githubusercontent.com/github/gemoji/master/images/emoji/unicode/";
 
-    return gfmified;
+        var gfmified = marked(      // Convert to markdown
+            emoji.replace_colons(   // Display emoji
+                linkify_users(
+                    text
+                )
+            )
+        );
+
+        return gfmified;
+    });
 };

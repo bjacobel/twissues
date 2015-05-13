@@ -7,7 +7,23 @@
  * Description: Backbone Views & rendering logic
  */
 
-define(["scripts/models", "text!templates/issue.html"], function(models, issueTemplate){
+require.config({
+    paths: {
+        "text": "../../bower_components/text/text",
+        "jquery": "../bower_components/jquery/dist/jquery",
+        "underscore": "../bower_components/underscore/underscore",
+        "backbone": "../bower_components/backbone/backbone"
+    }
+});
+
+define([
+        "jquery",
+        "underscore",
+        "backbone",
+        "models",
+        "text!../../templates/issue.html"
+    ], function($, _, Backbone, models, issueTemplate){
+
     var issueView = Backbone.View.extend({
         template: _.template(issueTemplate),
 
@@ -45,7 +61,6 @@ define(["scripts/models", "text!templates/issue.html"], function(models, issueTe
             this.options.comments.fetch(data.owner, data.repo, this.options.issueId, {
                 success: function(resp){
                     data.comments = resp.models.map(function(obj){return obj.attributes;});
-                    console.table(data.comments);
 
                     // Re-render the page when we have new data to pass in
                     self.$el.html(self.template(data));

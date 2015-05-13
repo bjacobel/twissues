@@ -1,9 +1,8 @@
 require.config({
   baseUrl: './',
   paths: {
-    'mocha'         : './bower_components/mocha/mocha',
-    'chai'          : './bower_components/chai/chai',
-    'models'        : '../app/scripts/models'
+    'mocha': './bower_components/mocha/mocha',
+    'chai' : './bower_components/chai/chai'
   },
   shim: {
     mocha: {

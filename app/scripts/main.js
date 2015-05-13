@@ -7,21 +7,24 @@
  * Description: General application setup, routing and utility functions.
  */
 
-var serverURL = "http://localhost:9000/";
-
 require.config({
-    paths: {
-        "text": "../bower_components/text/text"
+    paths:{
+        "jquery": "../bower_components/jquery/dist/jquery",
+        "underscore": "../bower_components/underscore/underscore",
+        "backbone": "../bower_components/backbone/backbone"
     }
 });
 
 require([
-        "scripts/views/viewUtils",
-        "scripts/views/issueView",
-        "scripts/views/issuesView",
-        "scripts/views/homeView",
-        "scripts/views/errorView"
-    ], function(viewUtils, issueView, issuesView, homeView, errorView){
+        "jquery",
+        "underscore",
+        "backbone",
+        "views/viewUtils",
+        "views/issueView",
+        "views/issuesView",
+        "views/homeView",
+        "views/errorView",
+    ], function($, _, Backbone, viewUtils, issueView, issuesView, homeView, errorView){
     var AppRouter = Backbone.Router.extend({
         routes: {
             "*owner/*repo/*issueId": "issueController",

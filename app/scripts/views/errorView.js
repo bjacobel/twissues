@@ -7,8 +7,22 @@
  * Description: Backbone Views & rendering logic
  */
 
+require.config({
+    paths: {
+        "text": "../../bower_components/text/text",
+        "jquery": "../bower_components/jquery/dist/jquery",
+        "underscore": "../bower_components/underscore/underscore",
+        "backbone": "../bower_components/backbone/backbone"
+    }
+});
+
 // A very basic view - nothing dynamic, just template rendering
-define(["scripts/models", "text!templates/error.html"], function(models, errorTemplate){
+define([
+        "jquery",
+        "underscore",
+        "backbone",
+        "text!../../templates/error.html"
+    ], function($, _, Backbone, errorTemplate){
     var errorView = Backbone.View.extend({
         template: _.template(errorTemplate),
 

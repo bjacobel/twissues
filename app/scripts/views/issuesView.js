@@ -7,7 +7,23 @@
  * Description: Backbone Views & rendering logic
  */
 
-define(["scripts/models", "text!templates/issues.html"], function(models, issuesTemplate){
+require.config({
+    paths: {
+        "text": "../../bower_components/text/text",
+        "jquery": "../bower_components/jquery/dist/jquery",
+        "underscore": "../bower_components/underscore/underscore",
+        "backbone": "../bower_components/backbone/backbone"
+    }
+});
+
+define([
+        "jquery",
+        "underscore",
+        "backbone",
+        "models",
+        "text!../../templates/issues.html"
+    ], function($, _, Backbone, models, issuesTemplate){
+
     var issuesView = Backbone.View.extend({
         template: _.template(issuesTemplate),
 
