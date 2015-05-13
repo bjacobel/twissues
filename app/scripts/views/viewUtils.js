@@ -9,8 +9,8 @@
 
 require.config({
     paths:{
-        "emoji": "../../bower_components/js-emoji/emoji",
-        "marked": "../../bower_components/marked/lib/marked"
+        "emoji": "http://cdn.jsdelivr.net/js-emoji/0.1.0/emoji.min",
+        "marked": "http://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min"
     }
 });
 

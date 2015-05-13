@@ -27,7 +27,7 @@ define(function(require) {
   mocha.bail(false);
 
   require([
-    'specs/issuesViewTests.js',
+    'specs/viewUtilsTests.js',
   ], function(require) {
     if (window.mochaPhantomJS) {
       mochaPhantomJS.run();

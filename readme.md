@@ -15,7 +15,7 @@ bower install
 gulp serve
 ```
 
-A browser window should open to `localhost:9000`, where the application is being served. The application is also deployed at `twissues.bjacobel.com`.
+A browser window should open to `localhost:9000`, where the application is being served. The application is also deployed at [`twissues.bjacobel.com`](http://twissues.bjacobel.com).
 
 To run the tests, execute:
 
