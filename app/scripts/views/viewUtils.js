@@ -20,9 +20,9 @@ require.config({
 String.prototype.trunc =
     function(n){
         var tooLong = this.length > n,
-            s_ = tooLong ? this.substr(0, n).substr(0, this.lastIndexOf(" ")) : this;
+            s_ = tooLong ? this.substr(0, n) : this;
 
-        return tooLong ? s_ + "&hellip;" : s_;
+        return tooLong ? s_.substr(0, s_.lastIndexOf(" ")) + "&hellip;" : s_;
     };
 
 

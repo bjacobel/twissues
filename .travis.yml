@@ -3,4 +3,6 @@ node_js:
   - "0.10"
 install:
   - npm install
-  - npm install -g mocha
+  - npm install -g bower
+before_test:
+  - "cd test && bower install && cd ../""
