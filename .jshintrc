@@ -2,17 +2,27 @@
   "browser": true,
   "esnext": true,
   "bitwise": true,
-  "camelcase": true,
   "curly": true,
   "eqeqeq": true,
   "immed": true,
   "indent": 2,
   "latedef": true,
-  "newcap": true,
+  "newcap": false,
   "noarg": true,
-  "quotmark": "single",
+  "quotmark": "double",
   "undef": true,
-  "unused": true,
-  "strict": true,
-  "jquery": true
+  "unused": false,
+  "strict": false,
+  "jquery": true,
+  "predef": [
+    "moment",
+    "require",
+    "define",
+    "Backbone",
+    "_",
+    "GitHub",
+    "console",
+    "emoji",
+    "marked"
+  ]
 }

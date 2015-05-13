@@ -122,6 +122,18 @@ gulp.task('build', ['jshint', 'html', 'images', 'fonts', 'extras'], function () 
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
+gulp.task('dist', ['build'], function(){
+  var s3 = require("gulp-s3");
+  try {
+    var aws = require('./aws.json');
+  } catch (e) {
+    throw "No aws.json found. Use aws.json.example as a template and create yours, then retry.";
+  }
+
+  return gulp.src('./dist/**')
+  .pipe(s3(aws));
+});
+
 gulp.task('default', ['clean'], function () {
   gulp.start('build');
 });

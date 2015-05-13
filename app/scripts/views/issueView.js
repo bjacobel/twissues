@@ -7,13 +7,13 @@
  * Description: Backbone Views & rendering logic
  */
 
-define(['scripts/models', 'text!templates/issue.html'], function(models, issueTemplate){
+define(["scripts/models", "text!templates/issue.html"], function(models, issueTemplate){
     var issueView = Backbone.View.extend({
         template: _.template(issueTemplate),
 
         initialize: function(options) {
             this.options = options;
-            _.bindAll(this, 'render');
+            _.bindAll(this, "render");
         },
 
         render: function() {

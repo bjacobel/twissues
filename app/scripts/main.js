@@ -7,7 +7,7 @@
  * Description: General application setup, routing and utility functions.
  */
 
-var serverURL = "http://localhost:9000/"
+var serverURL = "http://localhost:9000/";
 
 require.config({
     paths: {
@@ -15,7 +15,7 @@ require.config({
     }
 });
 
-require(['scripts/views/viewUtils', 'scripts/views/issueView', 'scripts/views/issuesView'], function(viewUtils, issueView, issuesView){
+require(["scripts/views/viewUtils", "scripts/views/issueView", "scripts/views/issuesView"], function(viewUtils, issueView, issuesView){
     var AppRouter = Backbone.Router.extend({
         routes: {
             "*owner/*repo/*issueId": "issueController",
@@ -24,14 +24,14 @@ require(['scripts/views/viewUtils', 'scripts/views/issueView', 'scripts/views/is
         }
     });
 
-    var app_router = new AppRouter;
+    var appRouter = new AppRouter();
 
     // Thin controllers - AFAICT Backbone is more of an MTV than a MVC
 
-    app_router.on("route:issueController", function(owner, repo, issueId){
+    appRouter.on("route:issueController", function(owner, repo, issueId){
         if (issueId === null){
             // triggered if the user adds a trailing slash (they should not)
-            app_router.navigate("#/"+owner+"/"+repo, true);
+            appRouter.navigate("#/"+owner+"/"+repo, true);
         } else {
             $("#content").html(new issueView({
                 model: GitHub.Issue,
@@ -44,7 +44,7 @@ require(['scripts/views/viewUtils', 'scripts/views/issueView', 'scripts/views/is
 
     });
 
-    app_router.on("route:issuesController", function(owner, repo, args){
+    appRouter.on("route:issuesController", function(owner, repo, args){
         var data = {
             collection: GitHub.Issues,
             owner: owner,

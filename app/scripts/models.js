@@ -25,9 +25,9 @@ var baseURL = "https://api.github.com/repos/";
 GitHub.sync = function(method, model, options) {
     var extendedOptions = _.extend({
         beforeSend: function(xhr) {
-            xhr.setRequestHeader('Accept', 'application/vnd.github.v3+json');
+            xhr.setRequestHeader("Accept", "application/vnd.github.v3+json");
             if (GitHub.token) {
-                return xhr.setRequestHeader('Authorization', "bearer " + GitHub.token);
+                return xhr.setRequestHeader("Authorization", "bearer " + GitHub.token);
             }
         }
     }, options);
@@ -48,7 +48,7 @@ GitHub.Collection = Backbone.Collection.extend({
 
 GitHub.Issue = GitHub.Model.extend({
     url: function() {
-        return baseURL + this.get('path') + "/issues/" + this.get('issueId');
+        return baseURL + this.get("path") + "/issues/" + this.get("issueId");
     }
 }, {
     fetch: function(owner, repo, issueId, options) {
@@ -65,7 +65,7 @@ GitHub.Issues = GitHub.Collection.extend({
     url: function() {
         var url = baseURL + this.toJSON()[0].path + "/issues";
         if (this.toJSON()[0].page){
-            url += "?page=" + this.toJSON()[0].page
+            url += "?page=" + this.toJSON()[0].page;
         }
         url += "?per_page=25";
         return url;
@@ -84,7 +84,7 @@ GitHub.Issues = GitHub.Collection.extend({
 
 GitHub.Comment = GitHub.Model.extend({
     url: function() {
-        return baseURL + this.get('path') + "/issues/" + this.get('issueId') + "/comments/" + this.get('commentId');
+        return baseURL + this.get("path") + "/issues/" + this.get("issueId") + "/comments/" + this.get("commentId");
     }
 }, {
     fetch: function(owner, repo, issueId, commentId, options) {

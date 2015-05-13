@@ -7,13 +7,13 @@
  * Description: Backbone Views & rendering logic
  */
 
-define(['scripts/models', 'text!templates/issues.html'], function(models, issuesTemplate){
+define(["scripts/models", "text!templates/issues.html"], function(models, issuesTemplate){
     var issuesView = Backbone.View.extend({
         template: _.template(issuesTemplate),
 
         initialize: function(options) {
             this.options = options;
-            _.bindAll(this, 'render');
+            _.bindAll(this, "render");
         },
 
         render: function() {
@@ -47,12 +47,12 @@ var paginate = function(increment){
         var currentPage = parseInt(window.location.hash.match(/\?page=(\d)/)[1], 10);
         window.location = window.location.origin + window.location.hash.replace(
             currentPage, currentPage + increment
-        )
+        );
     } else {
-        window.location = window.location + "?page=" + increment
+        window.location = window.location + "?page=" + increment;
     }
-}
+};
 
-var pageNext = function(){paginate(1);}
+var pageNext = function(){paginate(1);};
 
 var pagePrev = function(){paginate(-1);};

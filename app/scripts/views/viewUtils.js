@@ -14,9 +14,9 @@ emoji.img_path = "https://raw.githubusercontent.com/github/gemoji/master/images/
 String.prototype.trunc =
     function(n){
         var tooLong = this.length > n,
-            s_ = tooLong ? this.substr(0, n).substr(0, this.lastIndexOf(' ')) : this;
+            s_ = tooLong ? this.substr(0, n).substr(0, this.lastIndexOf(" ")) : this;
 
-        return tooLong ? s_ + '&hellip;' : s_;
+        return tooLong ? s_ + "&hellip;" : s_;
     };
 
 
