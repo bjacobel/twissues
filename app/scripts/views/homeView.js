@@ -30,3 +30,10 @@ define(["scripts/models", "text!templates/home.html"], function(models, homeTemp
 var goToRepo = function(){
     window.location = "/#/" + $("#owner").val() + "/" + $("#repo").val();
 };
+
+$(document).keypress(function(e) {
+    if(e.which == 13) {
+        goToRepo();
+    }
+});
+
