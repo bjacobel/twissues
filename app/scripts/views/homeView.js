@@ -37,18 +37,16 @@ define([
         }
     });
 
-    return homeView;
-});
-
-define(["../../bower_components/jquery/dist/jquery"], function($){
-// Route form input to the correct application pag
+    // Route form input to the correct application pag
     var goToRepo = function(){
         window.location = "/#/" + $("#owner").val() + "/" + $("#repo").val();
     };
 
     $(document).keypress(function(e) {
-        if(e.which == 13) {
+        if(e.which === 13) {
             goToRepo();
         }
     });
+
+    return homeView;
 });

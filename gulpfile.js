@@ -3,12 +3,35 @@
 // generated on 2015-05-09 using generator-gulp-webapp 0.2.0
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
+var amdOptimize = require("amd-optimize");
+var concat = require('gulp-concat');
 
 gulp.task('test', function () {
   var mochaPhantomJS = require('gulp-mocha-phantomjs');
   return gulp
     .src('test/index.html')
     .pipe(mochaPhantomJS());
+});
+
+gulp.task('js', ['build'], function(){
+  return gulp.src("src/scripts/**/*.js")
+    .pipe(amdOptimize("app/scripts/main", {
+      paths: {
+        "jquery": "bower_components/jquery/dist/jquery",
+        "underscore": "bower_components/underscore/underscore",
+        "backbone": "bower_components/backbone/backbone",
+        "emoji": "bower_components/js-emoji/emoji",
+        "marked": "bower_components/marked/lib/marked",
+        "views/viewUtils": "app/scripts/views/viewUtils",
+        "views/issueView": "app/scripts/views/issueView",
+        "views/issuesView": "app/scripts/views/issuesView",
+        "views/errorView": "app/scripts/views/errorView",
+        "views/homeView": "app/scripts/views/homeView",
+        "models": "app/scripts/models"
+      }
+    }))
+    .pipe(concat("main.js"))
+    .pipe(gulp.dest("dist/scripts"));
 });
 
 gulp.task('styles', function () {
@@ -32,8 +55,7 @@ gulp.task('jshint', function () {
 gulp.task('html', ['styles'], function () {
   var lazypipe = require('lazypipe');
   var cssChannel = lazypipe()
-    .pipe($.csso)
-    .pipe($.replace, 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap','fonts');
+    .pipe($.csso);
   var assets = $.useref.assets({searchPath: '{.tmp,app}'});
 
   return gulp.src('app/*.html')
@@ -129,7 +151,7 @@ gulp.task('build', ['jshint', 'html', 'images', 'fonts', 'extras'], function () 
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
-gulp.task('dist', ['build'], function(){
+gulp.task('dist', function(){
   var s3 = require("gulp-s3");
   try {
     var aws = require('./aws.json');
@@ -137,8 +159,9 @@ gulp.task('dist', ['build'], function(){
     throw "No aws.json found. Use aws.json.example as a template and create yours, then retry.";
   }
 
-  return gulp.src('./dist/**')
-  .pipe(s3(aws));
+  gulp.src('./app/**').pipe(s3(aws));
+
+  gulp.src('./bower_components/**').pipe(s3(aws, {uploadPath: "bower_components/"}));
 });
 
 gulp.task('default', ['clean'], function () {

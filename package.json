@@ -4,6 +4,7 @@
     "node": ">=0.10.0"
   },
   "devDependencies": {
+    "amd-optimize": "^0.4.3",
     "apache-server-configs": "^2.7.1",
     "connect": "^3.0.1",
     "connect-livereload": "^0.5.0",
@@ -11,6 +12,7 @@
     "gulp": "^3.6.0",
     "gulp-autoprefixer": "^1.0.1",
     "gulp-cache": "^0.2.2",
+    "gulp-concat": "^2.5.2",
     "gulp-csso": "^0.2.6",
     "gulp-filter": "^1.0.2",
     "gulp-flatten": "^0.0.4",
