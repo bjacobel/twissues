@@ -44,7 +44,7 @@ var linkify_users = function(text){
  /* jshint ignore:start */
 define(["emoji", "marked"], function(emoji, marked){
     return gfm = function(text){
-        emoji.img_path = "https://raw.githubusercontent.com/github/gemoji/master/images/emoji/unicode/";
+        emoji.img_path = "http://raw.githubusercontent.com/github/gemoji/master/images/emoji/unicode/";
 
         return marked(      // Convert to markdown
             emoji.replace_colons(   // Display emoji

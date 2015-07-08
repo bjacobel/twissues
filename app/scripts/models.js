@@ -31,7 +31,7 @@ require([
      */
     GitHub.token = "a43361eb824dd5a6bc9a1442d0cc84208458297c";
 
-    var baseURL = "https://api.github.com/repos/";
+    var baseURL = "http://api.github.com/repos/";
 
     // Override Backbone's default .sync with Github's custom accept mimetype
     // also set an authorization token, if we've obtained it already
@@ -50,7 +50,7 @@ require([
 
 
     // Set up custom Models and Collections that use our custom .sync method
-    // Wrap these sync methods in cachingSync (https://github.com/ggozad/Backbone.cachingSync)
+    // Wrap these sync methods in cachingSync (http://github.com/ggozad/Backbone.cachingSync)
     // because this Amtrak's wifi is very bad
     GitHub.Model = Backbone.Model.extend({
         sync: GitHub.sync
